@@ -45,4 +45,8 @@ Spam_Mesaj_Tespit_Sistemi/
 
 Projenin kod yapısını, geliştirme aşamalarını ve çalışan Streamlit arayüzünün canlı testini içeren tanıtım videosunu aşağıdan izleyebilirsiniz:
 
+## 🎬 Proje Tanıtım Videosu
+
+Projenin kod yapısını, geliştirme aşamalarını ve çalışan Streamlit arayüzünün canlı testini içeren tanıtım videosunu aşağıdan izleyebilirsiniz:
+
 👉 [Spam Mesaj Tespit Sistemi - YouTube Tanıtım Videosu](https://youtu.be/JlVTvq5KYGI)
