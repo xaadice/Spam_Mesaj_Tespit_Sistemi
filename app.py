@@ -1,53 +1,45 @@
 import streamlit as st
-import joblib
+import pickle
 import re
+import nltk
 from nltk.corpus import stopwords
 
-# 1. Sayfa Tasarımı ve Başlık
-st.set_page_config(page_title="Spam Mesaj Tespit Sistemi", page_icon="🛡️", layout="centered")
-st.title("🛡️ Spam Mesaj Tespit Sistemi")
-st.write("Yapay zeka tabanlı modelimizle gelen mesajların güvenli mi yoksa spam mi olduğunu anında analiz edin.")
+nltk.download('stopwords')
 
-# 2. Kaydedilen Modeli ve Vectorizer'ı Yüklüyoruz
-@st.cache_resource # Sayfa her yenilendiğinde modeli tekrar yükleyip sistemi yavaşlatmasın diye önbelleğe alıyoruz
-def load_models():
-    model = joblib.load("models/spam_model.pkl")
-    vectorizer = joblib.load("models/vectorizer.pkl")
-    return model, vectorizer
+# Sayfa Yapilandirmasi
+st.set_page_config(page_title="Spam Tespit Sistemi", page_icon="🛡️", layout="centered")
 
-try:
-    model, vectorizer = load_models()
-except FileNotFoundError:
-    st.error("Model dosyaları bulunamadı! Lütfen önce 'train.py' dosyasını çalıştırın.")
-    st.stop()
+# Modelleri yukle
+with open("models/spam_model.pkl", "rb") as f:
+    model = pickle.load(f)
 
-# 3. preprocess.py'da yazdığımız metin temizleme fonksiyonunun aynısı
+with open("models/vectorizer.pkl", "rb") as f:
+    vectorizer = pickle.load(f)
+
 def clean_text(text):
     text = text.lower()
-    text = re.sub(r'[^a-zA-Z\s]', '', text)
+    text = re.sub(r'[^a-z\s]', '', text)
     words = text.split()
     stop_words = set(stopwords.words('english'))
     clean_words = [w for w in words if w not in stop_words]
     return " ".join(clean_words)
 
-# 4. Kullanıcı Giriş Alanı
-user_input = st.text_area("Analiz edilmesini istediğiniz mesajı buraya yazın:", height=150, placeholder="Örn: WINNER! As a valued network customer you have been selected to receive a £900 prize reward...")
+# Arayüz Tasarimi
+st.title("🛡️ Yapay Zeka Tabanlı Spam Mesaj Tespit Sistemi")
+st.write("Gelen SMS veya e-posta metinlerinin güvenli olup olmadığını analiz edin.")
 
-# 5. Analiz Butonu ve Tahmin Motoru
-if st.button("Mesajı Analiz Et", type="primary"):
-    if user_input.strip() == "":
-        st.warning("Lütfen analiz etmek için bir metin girin!")
-    else:
-        # Gelen metni yapay zekanın anlayacağı formata sokuyoruz
+user_input = st.text_area("Analiz edilecek mesajı buraya giriniz:", height=150)
+
+if st.button("Mesajı Analiz Et"):
+    if user_input.strip() != "":
         cleaned = clean_text(user_input)
         vectorized = vectorizer.transform([cleaned])
-        
-        # Tahmin yapıyoruz
         prediction = model.predict(vectorized)[0]
         
-        # Sonucu ekrana şık bir şekilde basıyoruz
         st.subheader("Analiz Sonucu:")
-        if prediction == "spam":
-            st.error("🚨 DİKKAT: Bu mesaj %100 SPAM (İstenmeyen Mesaj) olarak tespit edilmiştir!")
+        if prediction == "ham":
+            st.success("✅ Bu mesaj GÜVENLİDİR.")
         else:
-            st.success("✅ GÜVENLİ: Bu mesaj normal (Ham) bir mesajdır.")
+            st.error("🚨 Bu mesaj bir SPAM / DOLANDIRICILIK mesajı olabilir!")
+    else:
+        st.warning("Lütfen analiz için geçerli bir metin girin.")
