@@ -1,30 +1,25 @@
 # 🛡️ Yapay Zeka Tabanlı Spam Mesaj Tespit Sistemi
 
-Bu proje, gelen SMS ve anlık mesajların güvenli mi (**Ham**) yoksa istenmeyen mi (**Spam**) olduğunu yüksek doğruluk oranıyla analiz eden uçtan uca bir makine öğrenmesi ve veri bilimi projesidir. Veri setinin temizlenmesinden modelin eğitilmesine ve Streamlit ile kullanıcı dostu bir web arayüzüne dönüştürülmesine kadar tüm aşamaları içerir.
+Metin tabanlı gelen SMS veya e-posta iletilerinin, makine öğrenmesi algoritmaları kullanılarak ham (güvenli) veya spam (zararlı) olup olmadığını anlık olarak analiz eden web tabanlı bir yazılım projesidir.
 
 ---
 
-## 🚀 Proje Özellikleri
-* **Gelişmiş Metin Ön İşleme:** NLTK kütüphanesi kullanılarak noktalama işaretlerinin temizlenmesi, küçük harfe dönüştürme ve etkisiz kelimelerin (stopwords) ayıklanması.
-* **Doğruluk Oranı (Accuracy):** %96.59 başarı yakalayan optimize edilmiş Naive Bayes Modeli.
-* **Modern Web Arayüzü:** Kullanıcıların mesajları anlık test edebileceği dinamik Streamlit arayüzü.
-* **Kurumsal Yapı:** Portfolyo standartlarına uygun, modüler Python kod mimarisi.
+## 🎬 Proje Tanıtım Videosu
+
+Projenin modüler kod yapısını, geliştirme aşamalarını ve çalışan Streamlit web arayüzünün canlı testlerini içeren detaylı anlatım videosunu aşağıdan izleyebilirsiniz:
+
+👉 [Spam Mesaj Tespit Sistemi - YouTube Tanıtım Videosu](https://youtu.be/JlVTvq5KYGI)
 
 ---
 
-## 📊 Model Performans Sonuçları
+## 🛠️ Kullanılan Teknolojiler & Algoritmalar
+* **Programlama Dili:** Python
+* **Makine Öğrenmesi Modeli:** Multinomial Naive Bayes (Sınıflandırma)
+* **Metin Sayısallaştırma:** TF-IDF Vectorizer
+* **Veri Ön İşleme (NLP):** NLTK (Stopwords Temizliği, RegEx, Küçük Harf Dönüşümü)
+* **Kullanıcı Arayüzü:** Streamlit (Web UI)
 
-Modelimiz, test veri seti üzerinde yapılan değerlendirmelerde oldukça güçlü metrikler elde etmiştir:
-
-| Metrik | Değer |
-| :--- | :--- |
-| **Doğruluk Oranı (Accuracy)** | **%96.59** |
-| **Ham Mesaj (Ham) Hassasiyeti** | %96 |
-| **Spam Mesaj (Spam) Hassasiyeti** | %100 |
-
----
-
-## 📁 Klasör Yapısı
+### 📂 Klasör Yapısı
 
 ```text
 Spam_Mesaj_Tespit_Sistemi/
@@ -33,20 +28,10 @@ Spam_Mesaj_Tespit_Sistemi/
 │   └── cleaned_spam.csv    # Temizlenmiş ve işlenmiş veri seti
 ├── models/
 │   ├── spam_model.pkl      # Eğitilmiş Naive Bayes modeli
-│   └── vectorizer.pkl      # Metin sayısallaştırma (TF-IDF) nesnesi
-├── .gitignore              # GitHub'a yüklenmeyecek klasörler (.venv vb.)
+│   └── vectorizer.pkl      # Metin sayısallaştırma nesnesi
+├── .gitignore              # GitHub'a yüklenmeyecek klasörler
 ├── app.py                  # Streamlit Web Arayüzü kodları
 ├── preprocess.py           # Veri temizleme ve ön işleme betiği
 ├── README.md               # Proje tanıtım ve kapak sayfası (Bu dosya)
-├── requirements.txt        # Projenin çalışması için gerekli kütüphaneler
+├── requirements.txt        # Proje için gerekli kütüphaneler
 └── train.py                # Model eğitimi ve performans raporlama betiği
-
-## 🎬 Proje Tanıtım Videosu
-
-Projenin kod yapısını, geliştirme aşamalarını ve çalışan Streamlit arayüzünün canlı testini içeren tanıtım videosunu aşağıdan izleyebilirsiniz:
-
-## 🎬 Proje Tanıtım Videosu
-
-Projenin kod yapısını, geliştirme aşamalarını ve çalışan Streamlit arayüzünün canlı testini içeren tanıtım videosunu aşağıdan izleyebilirsiniz:
-
-👉 [Spam Mesaj Tespit Sistemi - YouTube Tanıtım Videosu](https://youtu.be/JlVTvq5KYGI)
