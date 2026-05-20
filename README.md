@@ -1,6 +1,6 @@
 # 🛡️ Yapay Zeka Tabanlı Spam Mesaj Tespit Sistemi
 
-Metin tabanlı gelen SMS veya e-posta iletilerinin, makine öğrenmesi algoritmaları kullanılarak ham (güvenli) veya spam (zararlı) olup olmadığını anlık olarak analiz eden web tabanlı bir yazılım projesidir.
+Metin tabanlı gelen SMS veya e-posta iletilerinin, makine öğrenmesi algoritmaları kullanılarak ham (güvenli) ellerle mi yoksa spam (zararlı) olarak mı geldiğini anlık olarak analiz eden web tabanlı bir yazılım projesidir.
 
 ---
 
@@ -8,7 +8,7 @@ Metin tabanlı gelen SMS veya e-posta iletilerinin, makine öğrenmesi algoritma
 
 Projenin modüler kod yapısını, geliştirme aşamalarını ve çalışan Streamlit web arayüzünün canlı testlerini içeren detaylı anlatım videosunu aşağıdan izleyebilirsiniz:
 
-👉 [Spam Mesaj Tespit Sistemi - YouTube Tanıtım Videosu](https://youtu.be/JlVTvq5KYGI)
+👉 [Spam Mesaj Tespit Sistemi - YouTube Tanıtım Videosu](https://youtu.be/JIVTvq5KYGI)
 
 ---
 
